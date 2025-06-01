@@ -17,19 +17,15 @@ BIG_TEXT = [
     "╚═════╝░░╚═════╝░╚═╝░░╚══╝"
 ]
 
-# Hàm để căn giữa big text
 def center_text(lines):
-    # Lấy độ rộng của console
     console_width = shutil.get_terminal_size().columns
     centered_lines = []
     for line in lines:
-        # Tính số khoảng trắng cần thêm để căn giữa
         padding = (console_width - len(line)) // 2
         centered_line = " " * padding + line
         centered_lines.append(centered_line)
     return centered_lines
 
-# Hàm tải video lên Catbox
 def upload_to_catbox(file_path):
     url = "https://catbox.moe/user/api.php"
     if not os.path.isfile(file_path):
@@ -54,7 +50,6 @@ def upload_to_catbox(file_path):
     finally:
         files["fileToUpload"].close()
 
-# Hàm lưu link vào file
 def save_link_to_file(link, output_file="link.txt"):
     try:
         with open(output_file, "a", encoding="utf-8") as f:
@@ -63,7 +58,6 @@ def save_link_to_file(link, output_file="link.txt"):
     except Exception as e:
         print(f"{Fore.RED}✖ Lỗi lưu file: {str(e)}")
 
-# Hàm xóa tệp
 def delete_file(file_path):
     try:
         os.remove(file_path)
@@ -71,7 +65,6 @@ def delete_file(file_path):
     except Exception as e:
         print(f"{Fore.RED}✖ Lỗi xóa tệp: {str(e)}")
 
-# Hàm tải video bằng yt-dlp
 def download_and_upload_video(tiktok_link, download_folder):
     if not os.path.exists(download_folder):
         os.makedirs(download_folder)
@@ -104,10 +97,8 @@ def download_and_upload_video(tiktok_link, download_folder):
         print(f"{Fore.RED}✖ Lỗi tải video: {str(e)}")
 
 def main():
-    # Xóa màn hình console để loại bỏ banner Command Prompt
     os.system('cls')
     
-    # Căn giữa và hiển thị big text với màu sắc
     centered_big_text = center_text(BIG_TEXT)
     for line in centered_big_text:
         print(f"{Fore.CYAN}{line}")
